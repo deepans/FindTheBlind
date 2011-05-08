@@ -117,10 +117,17 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'ftb',
     'django_nose',
+    'django.contrib.admin',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+)
+
+import os
+
+TEMPLATE_DIRS = (
+    os.path.join(os.path.dirname(__file__),"templates").replace('\\','/'),
 )
 
 # A sample logging configuration. The only tangible logging
