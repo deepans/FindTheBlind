@@ -22,5 +22,10 @@ class Address(models.Model):
     def __unicode__(self):
         return self.patient.name
 
+class FamilyHistory(models.Model):
+    has_family_history = models.NullBooleanField('Is there a famliy history for same reason')
+    affected_relation = models.CharField('Who is affected?', null=True, blank=True)
+    consanguinity = models.NullBooleanField('Is there history of consanguinity')
+    
 
 
