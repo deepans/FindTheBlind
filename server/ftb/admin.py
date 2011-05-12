@@ -5,6 +5,7 @@ from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import User as AuthUser
 from django.contrib.sites.models import Site
+from locking.admin import LockableAdmin
 
 admin.site.unregister(AuthUser)
 admin.site.unregister(Group)
@@ -22,9 +23,9 @@ class AddressInline(admin.StackedInline):
     verbose_name_plural = 'Address'
     template = 'admin/edit_inline/stacked_one2one.html'
 
-class PatientAdmin(admin.ModelAdmin):
+class PatientAdmin(LockableAdmin):
 
-    list_display = ('name', 'home_town')
+    list_display = ('name', 'home_town', 'lock')
     search_fields = ('name', 'address__town')
     list_filter = ('address__town', 'details__sex')
     

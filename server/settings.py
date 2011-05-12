@@ -1,5 +1,7 @@
 # Django settings for server project.
 
+import os
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -45,18 +47,20 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = ''#os.path.join(os.path.dirname(__file__),"ftb/media/").replace('\\','/')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = ''#os.path.join(os.path.dirname(__file__),"ftb/static/").replace('\\','/')
+
+#'/home/deepan/Public/project/python/static/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -69,6 +73,7 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
+    '/home/deepan/Public/project/python/env/findtheblind1c/lib/python2.7/site-packages/locking/media',
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -118,13 +123,14 @@ INSTALLED_APPS = (
     'ftb',
     'django_nose',
     'django.contrib.admin',
+    'locking',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
 
-import os
+LOCK_TIMEOUT=1600
 
 TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__),"templates").replace('\\','/'),
