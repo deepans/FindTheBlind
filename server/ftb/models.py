@@ -24,7 +24,7 @@ class Address(models.Model):
 
 class FamilyHistory(models.Model):
     has_family_history = models.NullBooleanField('Is there a famliy history for same reason')
-    affected_relation = models.CharField('Who is affected?', null=True, blank=True)
+    affected_relation = models.CharField('Who is affected?', max_length=250, null=True, blank=True)
     consanguinity = models.NullBooleanField('Is there history of consanguinity')
     
 
