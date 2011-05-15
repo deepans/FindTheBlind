@@ -6,3 +6,4 @@ nose==1.0.0
 django-nose==0.1.2
 psycopg2==2.4
 django-locking==0.3.0
+fabric==1.0.1

@@ -12,16 +12,10 @@ class PatientDetails(models.Model):
     visual_loss_age = models.IntegerField('Age at onset of visual loss', max_length=2, choices=VISUAL_LOSS_AGE_CHOICES)
     patient = models.OneToOneField(Patient, related_name='details')
     
-    def __unicode__(self):
-        return self.patient.name
-    
 class Address(models.Model):
     town = models.CharField('Town/Village', max_length=50, db_index=True)
     patient = models.OneToOneField(Patient, related_name='address')
     
-    def __unicode__(self):
-        return self.patient.name
-
 class FamilyHistory(models.Model):
     has_family_history = models.NullBooleanField('Is there a famliy history for same reason')
     affected_relation = models.CharField('Who is affected?', max_length=250, null=True, blank=True)
