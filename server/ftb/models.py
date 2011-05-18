@@ -2,6 +2,7 @@ from django.db import models
 from choices import VISUAL_LOSS_AGE_CHOICES, GENDER_CHOICES
 from locking.models import LockableModel
 from ftb.mixins import ConcurrentlyModifiable
+from django.core.exceptions import ValidationError
 
 class Patient(LockableModel, ConcurrentlyModifiable):
     name = models.CharField('Name', max_length=50, db_index=True)
@@ -21,6 +22,10 @@ class FamilyHistory(ConcurrentlyModifiable):
     has_family_history = models.NullBooleanField('Is there a famliy history for same reason')
     affected_relation = models.CharField('Who is affected?', max_length=250, null=True, blank=True)
     consanguinity = models.NullBooleanField('Is there history of consanguinity')
+
+    def clean(self):
+        if not self.has_family_history and (self.affected_relation or self.consanguinity):
+            raise ValidationError("Should'nt has_family_history is true?")
     
 
 

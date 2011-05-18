@@ -1,2 +1,3 @@
 class StaleObjectException(Exception):
     pass
+
