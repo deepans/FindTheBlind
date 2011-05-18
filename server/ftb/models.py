@@ -1,3 +1,4 @@
+import ftb.signals
 from django.db import models
 from choices import VISUAL_LOSS_AGE_CHOICES, GENDER_CHOICES
 from locking.models import LockableModel

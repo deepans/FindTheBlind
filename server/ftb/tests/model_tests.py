@@ -10,3 +10,14 @@ class FamilyHistoryTest(TestCase):
                                 has_family_history=False,
                                 affected_relation='Uncle',
                                 consanguinity=False)
+        
+        family_history = FamilyHistory.objects.create(has_family_history=True,
+                                                      affected_relation='Uncle',
+                                                      consanguinity=True)
+        family_history.has_family_history = False
+        family_history.affected_relation = None
+        
+        self.assertRaisesRegexp(ValidationError,
+                                "Should'nt has_family_history is true?",
+                                FamilyHistory.concurrency.update,
+                                family_history)

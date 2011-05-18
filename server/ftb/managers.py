@@ -6,6 +6,8 @@ from ftb.exceptions import StaleObjectException
 class ConcurrencyManager(models.Manager):
 
     def update(self, model):
+        model.full_clean()
+        
         fields = model_to_dict(model,
                                fields=[field.name for field in model._meta.fields],
                                exclude=['version'])
