@@ -1,5 +1,6 @@
 from django.test import TestCase
 from ftb.models import FamilyHistory
+from ftb.model_factory import FamilyHistoryFactory
 from django.core.exceptions import ValidationError
 
 class FamilyHistoryTest(TestCase):
@@ -11,9 +12,8 @@ class FamilyHistoryTest(TestCase):
                                 affected_relation='Uncle',
                                 consanguinity=False)
         
-        family_history = FamilyHistory.objects.create(has_family_history=True,
-                                                      affected_relation='Uncle',
-                                                      consanguinity=True)
+        family_history = FamilyHistoryFactory.create()
+
         family_history.has_family_history = False
         family_history.affected_relation = None
         
