@@ -15,7 +15,7 @@ class FamilyHistoryTest(TestCase):
         family_history = FamilyHistoryFactory.create()
 
         family_history.has_family_history = False
-        family_history.affected_relation = None
+        family_history.affected_relation = 'Uncle'
         
         self.assertRaisesRegexp(ValidationError,
                                 "Should'nt has_family_history is true?",
