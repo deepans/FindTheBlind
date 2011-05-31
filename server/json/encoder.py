@@ -5,6 +5,7 @@ except ImportError:
     from StringIO import StringIO
 
 from wadofstuff.django.serializers import json
+from django.utils.encoding import smart_unicode
     
 class Serializer(json.Serializer):
     def serialize(self, queryset, **options):
@@ -49,4 +50,34 @@ class Serializer(json.Serializer):
         self.end_serialization()
         return self.getvalue()
 
-        
+    def handle_fk_field(self, obj, field):
+        """
+        Called to handle a ForeignKey field.
+        Recursively serializes relations specified in the 'relations' option.
+        """
+        fname = field.name
+        related = getattr(obj, fname)
+        if related is not None:
+            if fname in self.relations:
+                # perform full serialization of FK
+                serializer = Serializer()
+                options = {}
+                if isinstance(self.relations, dict):
+                    if isinstance(self.relations[fname], dict):
+                        options = self.relations[fname]
+                print type(serializer.serialize([related], **options))
+                self._fields[fname] = serializer.serialize([related], **options)[0]
+            else:
+                # emulate the original behaviour and serialize the pk value
+                if self.use_natural_keys and hasattr(related, 'natural_key'):
+                    related = related.natural_key()
+                else:
+                    if field.rel.field_name == related._meta.pk.name:
+                        # Related to remote object via primary key
+                        related = related._get_pk_val()
+                    else:
+                        # Related to remote object via other field
+                        related = smart_unicode(getattr(related, field.rel.field_name), strings_only=True)
+                self._fields[fname] = related
+        else:
+            self._fields[fname] = smart_unicode(related, strings_only=True)
