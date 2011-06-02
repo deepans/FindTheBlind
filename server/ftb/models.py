@@ -7,6 +7,7 @@ from django.core.exceptions import ValidationError
 
 class Patient(LockableModel, ConcurrentlyModifiable, JsonEncodable):
     name = models.CharField('Name', max_length=50, db_index=True)
+    relations_included_in_json = ('patientdetails', 'address', 'familyhistory')
 
 class PatientDetails(ConcurrentlyModifiable):
     ethnic_group = models.CharField('Ethnic group', max_length=50)
@@ -23,8 +24,7 @@ class FamilyHistory(ConcurrentlyModifiable):
     has_family_history = models.NullBooleanField('Is there a famliy history for same reason')
     affected_relation = models.CharField('Who is affected?', max_length=250, null=True, blank=True)
     consanguinity = models.NullBooleanField('Is there history of consanguinity')
-    #patient = models.OneToOneField(Patient, related_name='family_history')
-    patient = models.ForeignKey(Patient, related_name='familyhistory')
+    patient = models.OneToOneField(Patient, related_name='familyhistory')
     
     def clean(self):
         if not self.has_family_history and (self.affected_relation or self.consanguinity):

@@ -46,24 +46,20 @@ class Serializer(python.Serializer):
                         if not self.fields or field.attname in self.fields:
                             self.handle_m2m_field(obj, field)
             for relation in obj._meta.get_all_related_objects():
-                if isinstance(relation.field, OneToOneField):
                     if relation.field.serialize:
                         if relation.var_name not in self.excludes:
                             if not self.fields or relation.var_name in self.fields:
-                                self.handle_reverse_relation(obj, relation)
+                                if isinstance(relation.field, OneToOneField):
+                                    self.handle_reverse_o2o_relation(obj, relation)
+                                else:
+                                    self.handle_reverse_fk_relation(obj, relation)
             for extra in self.extras:
                 self.handle_extra_field(obj, extra)
             self.end_object(obj)
         self.end_serialization()
         return self.getvalue()
-    
-    def handle_reverse_relation(self, obj, relation):
-        """
-        Called to handle a reverse relations.
-        Recursively serializes relations specified in the 'relations' option.
-        """
-        fname = relation.var_name
-        related = getattr(obj, fname)
+
+    def __handle_reverse_relation(self, fname, related):
         if related is not None:
             if fname in self.relations:
                 # perform full serialization of relation
@@ -84,6 +80,21 @@ class Serializer(python.Serializer):
         else:
             self._fields[fname] = smart_unicode(related, strings_only=True)
 
+
+    def handle_reverse_fk_relation(self, obj, relation):
+        fname = relation.var_name
+        for related in getattr(obj, fname).all():
+            self.__handle_reverse_relation(fname, related)
+            
+    def handle_reverse_o2o_relation(self, obj, relation):
+        """
+        Called to handle a reverse relations.
+        Recursively serializes relations specified in the 'relations' option.
+        """
+        fname = relation.var_name
+        related = getattr(obj, fname)
+        self.__handle_reverse_relation(fname, related)
+            
 from django.utils import simplejson
 from django.core.serializers.json import DjangoJSONEncoder
 
