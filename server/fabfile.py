@@ -15,11 +15,13 @@ def sync_db():
 def db():
     setup_db()
     sync_db()
+    setup_admin()
 
 def test():
     local('python manage.py test')
     
-
+def setup_admin():
+    local('python manage.py createsuperuser --username=admin --email=admin@ftb.com')
 
     
     
