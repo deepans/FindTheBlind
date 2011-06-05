@@ -28,7 +28,7 @@ class FamilyHistory(ConcurrentlyModifiable):
     
     def clean(self):
         if not self.has_family_history and (self.affected_relation or self.consanguinity):
-            raise ValidationError("Should'nt has_family_history is true?")
+            raise ValidationError("Should'nt has_family_history be true?")
     
 
 

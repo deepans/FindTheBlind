@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 class FamilyHistoryTest(TestCase):
     def test_should_validate_while_creating_and_updating_models(self):
         self.assertRaisesRegexp(ValidationError,
-                                "Should'nt has_family_history is true?",
+                                "Should'nt has_family_history be true?",
                                 FamilyHistory.objects.create,
                                 has_family_history=False,
                                 affected_relation='Uncle',
@@ -18,6 +18,6 @@ class FamilyHistoryTest(TestCase):
         family_history.affected_relation = 'Uncle'
         
         self.assertRaisesRegexp(ValidationError,
-                                "Should'nt has_family_history is true?",
+                                "Should'nt has_family_history be true?",
                                 FamilyHistory.concurrency.update,
                                 family_history)
