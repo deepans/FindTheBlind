@@ -1,0 +1,349 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-06-05 21:39-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ftb/templates/admin/404.html:4 ftb/templates/admin/404.html.py:8
+msgid "Page not found"
+msgstr ""
+
+#: ftb/templates/admin/404.html:10
+msgid "We're sorry, but the requested page could not be found."
+msgstr ""
+
+#: ftb/templates/admin/500.html:4 ftb/templates/admin/app_index.html:8
+#: ftb/templates/admin/base.html:55 ftb/templates/admin/change_form.html:19
+#: ftb/templates/admin/change_list.html:42
+#: ftb/templates/admin/delete_confirmation.html:6
+#: ftb/templates/admin/delete_selected_confirmation.html:6
+#: ftb/templates/admin/invalid_setup.html:4
+#: ftb/templates/admin/object_history.html:6
+#: ftb/templates/admin/auth/user/change_password.html:12
+msgid "Home"
+msgstr ""
+
+#: ftb/templates/admin/500.html:4
+msgid "Server error"
+msgstr ""
+
+#: ftb/templates/admin/500.html:6
+msgid "Server error (500)"
+msgstr ""
+
+#: ftb/templates/admin/500.html:9
+msgid "Server Error <em>(500)</em>"
+msgstr ""
+
+#: ftb/templates/admin/500.html:10
+msgid ""
+"There's been an error. It's been reported to the site administrators via e-"
+"mail and should be fixed shortly. Thanks for your patience."
+msgstr ""
+
+#: ftb/templates/admin/actions.html:4
+msgid "Run the selected action"
+msgstr ""
+
+#: ftb/templates/admin/actions.html:4
+msgid "Go"
+msgstr ""
+
+#: ftb/templates/admin/actions.html:11
+msgid "Click here to select the objects across all pages"
+msgstr ""
+
+#: ftb/templates/admin/actions.html:11
+#, python-format
+msgid "Select all %(total_count)s %(module_name)s"
+msgstr ""
+
+#: ftb/templates/admin/actions.html:13
+msgid "Clear selection"
+msgstr ""
+
+#: ftb/templates/admin/app_index.html:10 ftb/templates/admin/index.html:19
+#, python-format
+msgid "%(name)s"
+msgstr ""
+
+#: ftb/templates/admin/base.html:28
+msgid "Welcome,"
+msgstr ""
+
+#: ftb/templates/admin/base.html:33
+msgid "Documentation"
+msgstr ""
+
+#: ftb/templates/admin/base.html:41
+#: ftb/templates/admin/auth/user/change_password.html:16
+#: ftb/templates/admin/auth/user/change_password.html:49
+msgid "Change password"
+msgstr ""
+
+#: ftb/templates/admin/base.html:48
+msgid "Log out"
+msgstr ""
+
+#: ftb/templates/admin/base_site.html:4
+msgid "Django site admin"
+msgstr ""
+
+#: ftb/templates/admin/base_site.html:7
+msgid "Django administration"
+msgstr "Find The Blind"
+
+#: ftb/templates/admin/change_form.html:22 ftb/templates/admin/index.html:29
+msgid "Add"
+msgstr ""
+
+#: ftb/templates/admin/change_form.html:31
+#: ftb/templates/admin/object_history.html:10
+msgid "History"
+msgstr ""
+
+#: ftb/templates/admin/change_form.html:32
+#: ftb/templates/admin/edit_inline/stacked.html:9
+#: ftb/templates/admin/edit_inline/stacked_one2one.html:9
+#: ftb/templates/admin/edit_inline/tabular.html:28
+msgid "View on site"
+msgstr ""
+
+#: ftb/templates/admin/change_form.html:43
+#: ftb/templates/admin/change_list.html:73 ftb/templates/admin/login.html:17
+#: ftb/templates/admin/auth/user/change_password.html:25
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ftb/templates/admin/change_list.html:64
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+#: ftb/templates/admin/change_list.html:84
+msgid "Filter"
+msgstr ""
+
+#: ftb/templates/admin/delete_confirmation.html:10
+#: ftb/templates/admin/submit_line.html:4
+msgid "Delete"
+msgstr ""
+
+#: ftb/templates/admin/delete_confirmation.html:17
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
+"related objects, but your account doesn't have permission to delete the "
+"following types of objects:"
+msgstr ""
+
+#: ftb/templates/admin/delete_confirmation.html:25
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would require deleting the "
+"following protected related objects:"
+msgstr ""
+
+#: ftb/templates/admin/delete_confirmation.html:33
+#, python-format
+msgid ""
+"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
+"All of the following related items will be deleted:"
+msgstr ""
+
+#: ftb/templates/admin/delete_confirmation.html:38
+#: ftb/templates/admin/delete_selected_confirmation.html:43
+msgid "Yes, I'm sure"
+msgstr ""
+
+#: ftb/templates/admin/delete_selected_confirmation.html:9
+msgid "Delete multiple objects"
+msgstr ""
+
+#: ftb/templates/admin/delete_selected_confirmation.html:16
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would result in deleting related "
+"objects, but your account doesn't have permission to delete the following "
+"types of objects:"
+msgstr ""
+
+#: ftb/templates/admin/delete_selected_confirmation.html:24
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would require deleting the following "
+"protected related objects:"
+msgstr ""
+
+#: ftb/templates/admin/delete_selected_confirmation.html:32
+#, python-format
+msgid ""
+"Are you sure you want to delete the selected %(objects_name)s? All of the "
+"following objects and their related items will be deleted:"
+msgstr ""
+
+#: ftb/templates/admin/filter.html:2
+#, python-format
+msgid " By %(filter_title)s "
+msgstr ""
+
+#: ftb/templates/admin/index.html:18
+#, python-format
+msgid "Models available in the %(name)s application."
+msgstr ""
+
+#: ftb/templates/admin/index.html:35
+msgid "Change"
+msgstr ""
+
+#: ftb/templates/admin/index.html:45
+msgid "You don't have permission to edit anything."
+msgstr ""
+
+#: ftb/templates/admin/index.html:53
+msgid "Recent Actions"
+msgstr ""
+
+#: ftb/templates/admin/index.html:54
+msgid "My Actions"
+msgstr ""
+
+#: ftb/templates/admin/index.html:58
+msgid "None available"
+msgstr ""
+
+#: ftb/templates/admin/index.html:72
+msgid "Unknown content"
+msgstr ""
+
+#: ftb/templates/admin/invalid_setup.html:7
+msgid ""
+"Something's wrong with your database installation. Make sure the appropriate "
+"database tables have been created, and make sure the database is readable by "
+"the appropriate user."
+msgstr ""
+
+#: ftb/templates/admin/login.html:33
+msgid "Username:"
+msgstr ""
+
+#: ftb/templates/admin/login.html:37
+msgid "Password:"
+msgstr ""
+
+#: ftb/templates/admin/login.html:42
+msgid "Log in"
+msgstr ""
+
+#: ftb/templates/admin/object_history.html:22
+msgid "Date/time"
+msgstr ""
+
+#: ftb/templates/admin/object_history.html:23
+msgid "User"
+msgstr ""
+
+#: ftb/templates/admin/object_history.html:24
+msgid "Action"
+msgstr ""
+
+#: ftb/templates/admin/object_history.html:38
+msgid ""
+"This object doesn't have a change history. It probably wasn't added via this "
+"admin site."
+msgstr ""
+
+#: ftb/templates/admin/pagination.html:10
+msgid "Show all"
+msgstr ""
+
+#: ftb/templates/admin/pagination.html:11
+#: ftb/templates/admin/submit_line.html:3
+msgid "Save"
+msgstr ""
+
+#: ftb/templates/admin/search_form.html:8
+msgid "Search"
+msgstr ""
+
+#: ftb/templates/admin/search_form.html:10
+#, python-format
+msgid "%(counter)s result"
+msgid_plural "%(counter)s results"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ftb/templates/admin/search_form.html:10
+#, python-format
+msgid "%(full_result_count)s total"
+msgstr ""
+
+#: ftb/templates/admin/submit_line.html:5
+msgid "Save as new"
+msgstr ""
+
+#: ftb/templates/admin/submit_line.html:6
+msgid "Save and add another"
+msgstr ""
+
+#: ftb/templates/admin/submit_line.html:7
+msgid "Save and continue editing"
+msgstr ""
+
+#: ftb/templates/admin/auth/user/add_form.html:6
+msgid ""
+"First, enter a username and password. Then, you'll be able to edit more user "
+"options."
+msgstr ""
+
+#: ftb/templates/admin/auth/user/add_form.html:8
+msgid "Enter a username and password."
+msgstr ""
+
+#: ftb/templates/admin/auth/user/change_password.html:29
+#, python-format
+msgid "Enter a new password for the user <strong>%(username)s</strong>."
+msgstr ""
+
+#: ftb/templates/admin/auth/user/change_password.html:36
+msgid "Password"
+msgstr ""
+
+#: ftb/templates/admin/auth/user/change_password.html:42
+msgid "Password (again)"
+msgstr ""
+
+#: ftb/templates/admin/auth/user/change_password.html:43
+msgid "Enter the same password as above, for verification."
+msgstr ""
+
+#: ftb/templates/admin/edit_inline/stacked.html:67
+#: ftb/templates/admin/edit_inline/stacked_one2one.html:67
+#: ftb/templates/admin/edit_inline/tabular.html:113
+#, python-format
+msgid "Add another %(verbose_name)s"
+msgstr ""
+
+#: ftb/templates/admin/edit_inline/stacked.html:70
+#: ftb/templates/admin/edit_inline/stacked_one2one.html:70
+#: ftb/templates/admin/edit_inline/tabular.html:116
+msgid "Remove"
+msgstr ""
+
+#: ftb/templates/admin/edit_inline/tabular.html:15
+msgid "Delete?"
+msgstr ""
