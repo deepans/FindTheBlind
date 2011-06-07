@@ -94,6 +94,23 @@ class Serializer(python.Serializer):
         fname = relation.var_name
         related = getattr(obj, fname)
         self.__handle_reverse_relation(fname, related)
+
+    def end_object(self, obj):
+        """
+        Called when serializing of an object ends.
+        """
+        fields = {
+            "model"  : smart_unicode(obj._meta),
+            "pk"     : smart_unicode(obj._get_pk_val(), strings_only=True)}
+        fields.update(self._fields)
+        
+        self.objects.append(fields)
+        if self._extras:
+            self.objects[-1]["extras"] = self._extras
+        self._fields = None
+        self._extras = None
+
+        
             
 from django.utils import simplejson
 from django.core.serializers.json import DjangoJSONEncoder
