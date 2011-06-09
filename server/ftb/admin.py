@@ -5,6 +5,7 @@ from django.contrib.auth.models import User as AuthUser
 from django.contrib.sites.models import Site
 from ftb.adminsite.adminforms import FamilyHistoryForm
 from locking.admin import LockableAdmin
+from ftb.adminsite.modeladmin import TabbedModelAdmin
 
 admin.site.unregister(AuthUser)
 admin.site.unregister(Group)
@@ -32,17 +33,20 @@ class FamilyHistoryInline(admin.StackedInline):
     template = 'admin/edit_inline/stacked_one2one.html'
     form = FamilyHistoryForm
     
-class PatientAdmin(LockableAdmin):
+class PatientAdmin(TabbedModelAdmin):
 
-    list_display = ('name', 'home_town', 'lock')
+    #list_display = ('name', 'home_town', 'lock')
+    list_display = ('name', 'home_town',)
     search_fields = ('name', 'address__town')
     list_filter = ('address__town', 'patientdetails__sex')
     
     fieldsets = [
         (None, {'fields': ['name']}),
     ]
-    inlines = [AddressInline, PatientDetailsInline, FamilyHistoryInline]
-
+    #inlines = [AddressInline, PatientDetailsInline, FamilyHistoryInline]
+    tabs = {'Patient Details' : {'fieldsets': fieldsets, 'inlines' : (AddressInline, PatientDetailsInline)}, 'Family History' : {'fieldsets' : [], 'inlines' : (FamilyHistoryInline,)}}
+    tabs_order = ('Patient Details', 'Family History')
+    
     def home_town(self, obj):
         return obj.address.town
     home_town.short_description = 'Town/Village'

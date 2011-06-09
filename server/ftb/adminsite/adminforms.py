@@ -1,5 +1,6 @@
 from django.forms.models import ModelForm
 from ftb.models import FamilyHistory
+from settings import STATIC_URL
 
 class EnhancedModelForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -19,3 +20,7 @@ class FamilyHistoryForm(EnhancedModelForm):
     class Meta:
         model = FamilyHistory
 
+class TabbedForm(ModelForm):
+
+    class Media:
+        css = {'all': ('{0}tabbedadmin/css/tabs.css'.format(STATIC_URL),) }
