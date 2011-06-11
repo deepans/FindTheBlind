@@ -4,11 +4,11 @@
 {% block content %}
 {% if tabs %}
     <div id="changeform_tabs">
-        <ul>
+      <div id="menu">
         {% for tab,title in tabs %}
-        <li{% ifequal current_tab tab %} class="selected"{% endifequal %}><a href="?tab={{ tab }}"><span>{{title}}</span></a></li>
+        <div{% ifequal current_tab tab %} class="selected"{% endifequal %}><a href="?tab={{ tab }}"><span>{{title}}</span></a></div>
         {% endfor %}
-        </ul>
+      </div>
     </div>
 {% endif %}
 {{ block.super }}

@@ -1,3 +1,12 @@
+.object-tools {
+    margin-top : -4.4em
+}
+div#content-main form {
+    padding: 1em;
+    background-color: #fcfcfc;
+    border: 1px solid #ccc;
+    border-width: 0px 1px 1px 1px;
+}
 #changeform_tabs {
     background:#fff none repeat scroll 0 0;
     border-bottom:1px solid #ccc;
@@ -6,50 +15,32 @@
     line-height:normal;
     width:100%;
 }
-
-div#content-main form 
-{
-    padding: 1em;
-    background-color: #fcfcfc;
-    border: 1px solid #ccc;
-    border-width: 0px 1px 1px 1px;
-}
-
-#changeform_tabs ul {
-    list-style-image:none;
-    list-style-position:outside;
-    list-style-type:none;
-    margin:0;
-    padding:10px 10px 0 20px;
-}
-#changeform_tabs li {
-    display:inline;
-    margin:0;
-    padding:0;
-}
-#changeform_tabs a {
-    background:transparent url(../images/tableftJ.gif) no-repeat scroll left top;
+#changeform_tabs div {
     float:left;
-    margin:0;
-    padding:0 0 0 5px;
-    text-decoration:none;
+}
+#menu {
+    width: 99.95%;
+    border-right: 1px solid #adadad;
+    border-left: 1px solid #adadad;
+    background:transparent url(../images/tab_grey.gif) repeat scroll left top;
 }
 #changeform_tabs a span {
-    background:transparent url(../images/tabrightJ.gif) no-repeat scroll right top;
     color:#24618E;
     display:block;
     float:left;
     padding:5px 15px 4px 6px;
+    border-right: 1px solid #adadad;
+/*    border-bottom: 1px solid #adadad;*/
 }
-#changeform_tabs a span {
-    float:none;
+#changeform_tabs a:hover span, #changeform_tabs div.selected a span {
+    color:#24618E;
+    background:transparent url(../images/tab_blue.gif) repeat scroll right top;
 }
-#changeform_tabs a:hover span, #changeform_tabs li.selected a span {
-    color:#FFFFFF;
+/*
+#changeform_tabs div.selected a span {
+    border-bottom-color: #24618E;
 }
-#changeform_tabs a:hover, #changeform_tabs li.selected a {
-    background-position:0 -42px;
-}
-#changeform_tabs a:hover span, #changeform_tabs li.selected a span {
-    background-position:100% -42px;
-}
+#changeform_tabs a:hover span {
+    border-bottom-color: #E66722;
+}*/
+
