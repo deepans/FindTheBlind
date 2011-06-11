@@ -17,6 +17,9 @@ class PatientDetailsInline(admin.StackedInline):
     verbose_name = 'Patient Details'
     verbose_name_plural = 'Patient Details'
     template = 'admin/edit_inline/stacked_one2one.html'
+    fieldsets = [
+        (None, {'fields': ['ethnic_group', 'age']}),
+    ]
 
 class AddressInline(admin.StackedInline):
     model = Address
@@ -33,17 +36,16 @@ class FamilyHistoryInline(admin.StackedInline):
     template = 'admin/edit_inline/stacked_one2one.html'
     form = FamilyHistoryForm
     
-class PatientAdmin(TabbedModelAdmin):
+class PatientAdmin(TabbedModelAdmin, LockableAdmin):
 
-    #list_display = ('name', 'home_town', 'lock')
-    list_display = ('name', 'home_town',)
+    list_display = ('name', 'home_town', 'lock')
     search_fields = ('name', 'address__town')
     list_filter = ('address__town', 'patientdetails__sex')
     
     fieldsets = [
         (None, {'fields': ['name']}),
     ]
-    #inlines = [AddressInline, PatientDetailsInline, FamilyHistoryInline]
+
     tabs = {'Patient Details' : {'fieldsets': fieldsets, 'inlines' : (AddressInline, PatientDetailsInline)}, 'Family History' : {'fieldsets' : [], 'inlines' : (FamilyHistoryInline,)}}
     tabs_order = ('Patient Details', 'Family History')
     
