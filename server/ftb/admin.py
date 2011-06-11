@@ -7,9 +7,9 @@ from ftb.adminsite.adminforms import FamilyHistoryForm
 from locking.admin import LockableAdmin
 from ftb.adminsite.modeladmin import TabbedModelAdmin
 
-admin.site.unregister(AuthUser)
-admin.site.unregister(Group)
-admin.site.unregister(Site)
+#admin.site.unregister(AuthUser)
+#admin.site.unregister(Group)
+#admin.site.unregister(Site)
 
 class PatientDetailsInline(admin.StackedInline):
     model = PatientDetails
@@ -17,10 +17,7 @@ class PatientDetailsInline(admin.StackedInline):
     verbose_name = 'Patient Details'
     verbose_name_plural = 'Patient Details'
     template = 'admin/edit_inline/stacked_one2one.html'
-    fieldsets = [
-        (None, {'fields': ['ethnic_group', 'age']}),
-    ]
-
+ 
 class AddressInline(admin.StackedInline):
     model = Address
     exclude = ('version',)    
@@ -57,7 +54,8 @@ class PatientAdmin(TabbedModelAdmin, LockableAdmin):
         js = ('/static/admin/js/jquery.min.js',
               '/static/admin/js/jquery.init.js',
               '/static/admin/js/inlines.min.js',
-              'ftb/js/fielddeps.js',)
+              'ftb/js/fielddeps.js',
+              '/static/locking/js/admin.locking.js',)
         
 admin.site.register(Patient, PatientAdmin)
 

@@ -5,9 +5,9 @@ var ftb = {
         if(dependent_on.is('select')){
             selected_value = dependent_on.find('option:selected').text();
         }
-        if(selected_value == dependent_value){
+        if(!dependent_on.attr('disabled' && selected_value == dependent_value){
             dependent_element.attr('disabled', false);
-        }else{
+        }else {
             ftb.set_none(dependent_element);
             dependent_element.attr('disabled', true);
         }
