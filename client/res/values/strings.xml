@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Main</string>
+    <string name="app_name">Find the Blind</string>
+    <string name="no_notes">No data available</string>
+    <string name="password">Password:</string>
+    <string name="login_label">Login</string>
+    <string name="login_id">Login Id:</string>
+
 </resources>

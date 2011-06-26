@@ -3,11 +3,17 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/white_bg"
     >
-<TextView
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:text="Hello World, Main"
-    />
-</LinearLayout>
+    <ListView android:id="@+id/android:list"
+          android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+            android:divider="@drawable/list_divider"
+            />
+  	<TextView android:id="@+id/android:empty"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:textColor="#ff000000"
+          android:text="@string/no_notes"/>
 
+</LinearLayout>

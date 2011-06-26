@@ -10,10 +10,81 @@ package com.ftb;
 public final class R {
     public static final class attr {
     }
+    public static final class drawable {
+        public static final int arrow_big=0x7f020000;
+        public static final int arrow_grey=0x7f020001;
+        public static final int black_btn=0x7f020002;
+        public static final int button=0x7f020003;
+        public static final int friend_button_off=0x7f020004;
+        public static final int friend_button_on=0x7f020005;
+        public static final int grey_wp_button=0x7f020006;
+        public static final int grey_wp_button_active=0x7f020007;
+        public static final int grey_wp_button_down=0x7f020008;
+        public static final int icon=0x7f020009;
+        public static final int line=0x7f02000a;
+        public static final int list_bg=0x7f02000b;
+        public static final int list_bg_selector=0x7f02000c;
+        public static final int list_divider=0x7f02000d;
+        public static final int screen_background_black=0x7f020010;
+        public static final int title_bar_gradient=0x7f02000e;
+        public static final int translucent_background=0x7f020011;
+        public static final int transparent_background=0x7f020012;
+        public static final int white_bg=0x7f02000f;
+    }
+    public static final class id {
+        public static final int FrameLayout01=0x7f060001;
+        public static final int l_httppassword=0x7f060005;
+        public static final int l_httpuser=0x7f060003;
+        public static final int login=0x7f060007;
+        public static final int pass=0x7f060006;
+        public static final int section1=0x7f060002;
+        public static final int settings=0x7f060000;
+        public static final int uName=0x7f060004;
+        public static final int viewSection=0x7f060008;
+    }
     public static final class layout {
-        public static final int main=0x7f020000;
+        public static final int dashboard=0x7f030000;
+        public static final int list_item=0x7f030001;
+        public static final int login=0x7f030002;
+        public static final int main=0x7f030003;
+        public static final int view_patient=0x7f030004;
     }
     public static final class string {
-        public static final int app_name=0x7f030000;
+        public static final int app_name=0x7f040000;
+        public static final int login_id=0x7f040004;
+        public static final int login_label=0x7f040003;
+        public static final int no_notes=0x7f040001;
+        public static final int password=0x7f040002;
+    }
+    public static final class style {
+        public static final int TextAppearance_Theme_PlainText=0x7f050004;
+        /**  Base application theme is the default theme. 
+         */
+        public static final int Theme=0x7f050000;
+        /**  Variation on our application theme that forces a plain
+        text style. 
+         */
+        public static final int Theme_PlainText=0x7f050001;
+        public static final int Theme_TabView=0x7f05000a;
+        /**  A theme that has a translucent background.  Here we explicitly specify
+         that this theme is to inherit from the system's translucent theme,
+         which sets up various attributes correctly.. 
+         */
+        public static final int Theme_Translucent=0x7f050002;
+        /**  Variation on our application theme that has a transparent
+         background; this example completely removes the background,
+         allowing the activity to decide how to composite.  Also here we
+         force the translucency ourself rather than making use of the built-in
+         translucent theme. 
+         */
+        public static final int Theme_Transparent=0x7f050003;
+        public static final int WindowTitleBackground=0x7f05000d;
+        public static final int WordPress=0x7f050005;
+        public static final int WordPress_TabWidget=0x7f05000b;
+        public static final int WordPress_TabWidgetText=0x7f05000c;
+        public static final int WordPressButtonAppearance=0x7f050008;
+        public static final int WordPressSectionHeader=0x7f050009;
+        public static final int WordPressTextAppearance=0x7f050006;
+        public static final int WordPressTitleAppearance=0x7f050007;
     }
 }
