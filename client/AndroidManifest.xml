@@ -13,7 +13,7 @@
         </activity>
         <activity android:name=".activity.PatientList" android:label="Patient List"/>
         <activity android:name=".activity.ViewPatient"/>
-        <activity android:name=".activity.PatientDashboard"/>
+        <activity android:name=".activity.PatientDashboard" android:theme="@style/Theme.TabView"/>
         <activity android:name=".activity.LocatePatient"/>
         <meta-data android:name="AA_DB_NAME" android:value="ftb.db" />
         <meta-data android:name="AA_DB_VERSION" android:value="3" />

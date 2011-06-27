@@ -36,6 +36,28 @@ public class Patient extends ActiveRecordBase<Patient> {
         return name;
     }
 
+    public PatientDetail getPatientdetails(){
+        return queryChild(getContext(), pk, PatientDetail.class);
+    }
+
+    public FamilyHistory getFamilyhistory(){
+        return queryChild(getContext(), pk, FamilyHistory.class);
+    }
+
+    public Address getAddress(){
+        return queryChild(getContext(), pk, Address.class);
+    }
+
+    public String getAge(){
+        PatientDetail detail = getPatientdetails();
+        return (detail == null) ? "" :detail.age;
+    }
+
+    public String getTown(){
+        Address addressObj = getAddress();
+        return (addressObj == null) ? "" :addressObj.town;
+    }
+
     public static Patient get(Context context, String id) {
         Patient patient = Patient.querySingle(context, Patient.class, null, "pid=" + id);
         patient.patientdetails = queryChild(context, id, PatientDetail.class);

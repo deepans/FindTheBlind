@@ -20,27 +20,31 @@ public final class R {
         public static final int grey_wp_button=0x7f020006;
         public static final int grey_wp_button_active=0x7f020007;
         public static final int grey_wp_button_down=0x7f020008;
-        public static final int icon=0x7f020009;
-        public static final int line=0x7f02000a;
-        public static final int list_bg=0x7f02000b;
-        public static final int list_bg_selector=0x7f02000c;
-        public static final int list_divider=0x7f02000d;
-        public static final int screen_background_black=0x7f020010;
-        public static final int title_bar_gradient=0x7f02000e;
-        public static final int translucent_background=0x7f020011;
-        public static final int transparent_background=0x7f020012;
-        public static final int white_bg=0x7f02000f;
+        public static final int ic_menu_preferences=0x7f020009;
+        public static final int icon=0x7f02000a;
+        public static final int line=0x7f02000b;
+        public static final int list_bg=0x7f02000c;
+        public static final int list_bg_selector=0x7f02000d;
+        public static final int list_divider=0x7f02000e;
+        public static final int recent_checkins_tab_selected=0x7f02000f;
+        public static final int screen_background_black=0x7f020012;
+        public static final int title_bar_gradient=0x7f020010;
+        public static final int translucent_background=0x7f020013;
+        public static final int transparent_background=0x7f020014;
+        public static final int white_bg=0x7f020011;
     }
     public static final class id {
-        public static final int FrameLayout01=0x7f060001;
-        public static final int l_httppassword=0x7f060005;
-        public static final int l_httpuser=0x7f060003;
-        public static final int login=0x7f060007;
-        public static final int pass=0x7f060006;
-        public static final int section1=0x7f060002;
-        public static final int settings=0x7f060000;
-        public static final int uName=0x7f060004;
-        public static final int viewSection=0x7f060008;
+        public static final int FrameLayout01=0x7f060003;
+        public static final int l_httppassword=0x7f060007;
+        public static final int l_httpuser=0x7f060005;
+        public static final int login=0x7f060009;
+        public static final int pass=0x7f060008;
+        public static final int primary=0x7f060000;
+        public static final int secondary=0x7f060001;
+        public static final int section1=0x7f060004;
+        public static final int settings=0x7f060002;
+        public static final int uName=0x7f060006;
+        public static final int viewSection=0x7f06000a;
     }
     public static final class layout {
         public static final int dashboard=0x7f030000;

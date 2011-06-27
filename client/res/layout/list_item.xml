@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+       <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/list_bg"
+            android:padding="10dp"
+            android:textColor="#ff000000"
+
+            android:drawableRight="@drawable/arrow_grey"
+            >
         <TextView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:padding="10dp"
-            android:textColor="#ff000000"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:background="@drawable/list_bg"
-            android:drawableRight="@drawable/arrow_grey">
+                android:id="@+id/primary">
         </TextView>
+
+
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:textSize="12sp"
+            android:id="@+id/secondary">
+        </TextView>
+
+    </LinearLayout>

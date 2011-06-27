@@ -25,7 +25,7 @@ public class PatientList extends ListActivity {
 
     private void fillData() {
         List<Patient> resultList = getPatientList();
-        setListAdapter(new ArrayAdapter<Patient>(this, R.layout.list_item, resultList));
+        setListAdapter(new PatientListAdapter(this, resultList));
     }
 
     private List<Patient> getPatientList() {
