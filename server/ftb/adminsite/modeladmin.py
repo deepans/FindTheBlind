@@ -12,7 +12,7 @@ class TabbedModelAdmin(admin.ModelAdmin):
     tabs_order = []
 
     def __init__(self, model, admin_site):
-        self.current_tab = self.tabs.iterkeys().next()
+        self.current_tab = self.tabs_order[0]
         self.tab_inline_instances = {}
         self.old_inline_instances = []
         super(TabbedModelAdmin, self).__init__(model, admin_site)
@@ -27,7 +27,7 @@ class TabbedModelAdmin(admin.ModelAdmin):
                                        """Move prepopulated fields to tabs section""")
 
     def __call__(self, request, url):
-        self.current_tab  = request._get_request().get('tab',self.current_tab) 
+        self.current_tab  = request._get_request().get('tab',self.current_tab)
         return super(TabbedModelAdmin, self).__call__(request, url)
 
     def response_change(self, request, obj):
@@ -74,7 +74,7 @@ class TabbedModelAdmin(admin.ModelAdmin):
         return form
 
     def add_view(self, request, form_url='', extra_context=None):
-        self.current_tab  = request._get_request().get('tab',self.current_tab) 
+        self.current_tab  = request._get_request().get('tab', self.tabs_order[0])
         extra_context = extra_context or {}
         tab_list = []
         for t in self.tabs_order or self.tabs.keys():
@@ -86,7 +86,7 @@ class TabbedModelAdmin(admin.ModelAdmin):
         return super(TabbedModelAdmin, self).add_view(request, form_url, extra_context)
 
     def change_view(self, request, object_id, extra_context=None):
-        self.current_tab  = request._get_request().get('tab',self.current_tab) 
+        self.current_tab  = request._get_request().get('tab', self.tabs_order[0])
         extra_context = extra_context or {}
         tab_list = []
         for t in self.tabs_order or self.tabs.keys():

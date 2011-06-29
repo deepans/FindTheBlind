@@ -7,9 +7,9 @@ from ftb.adminsite.adminforms import FamilyHistoryForm
 from locking.admin import LockableAdmin
 from ftb.adminsite.modeladmin import TabbedModelAdmin
 
-#admin.site.unregister(AuthUser)
-#admin.site.unregister(Group)
-#admin.site.unregister(Site)
+admin.site.unregister(AuthUser)
+admin.site.unregister(Group)
+admin.site.unregister(Site)
 
 class PatientDetailsInline(admin.StackedInline):
     model = PatientDetails
