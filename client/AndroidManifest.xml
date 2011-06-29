@@ -12,9 +12,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.PatientList" android:label="Patient List"/>
-        <activity android:name=".activity.ViewPatient"/>
-        <activity android:name=".activity.PatientDashboard" android:theme="@style/Theme.TabView"/>
+        <activity android:name=".activity.ViewPatient" android:label="View Patient"/>
+        <activity android:name=".activity.PatientDashboard" />
         <activity android:name=".activity.LocatePatient"/>
+        <activity android:name=".activity.FormDashboardActivity" android:label="Select Form"/>
+        <activity android:name=".activity.LocationActivity"/>
+        <activity android:name=".activity.SelectFormActivity" android:label="Select Form"/>
         <meta-data android:name="AA_DB_NAME" android:value="ftb.db" />
         <meta-data android:name="AA_DB_VERSION" android:value="3" />
     </application>

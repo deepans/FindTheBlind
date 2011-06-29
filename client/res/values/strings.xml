@@ -6,4 +6,17 @@
     <string name="login_label">Login</string>
     <string name="login_id">Login Id:</string>
 
+    <string name="btn_schedule">Personal Details</string>
+    <string name="btn_map">Visual Assessment</string>
+    <string name="btn_sessions">General Assessment</string>
+    <string name="btn_starred">Previous Eye Surgery</string>
+    <string name="btn_vendors">Eye Examination (Site of Abnormality)</string>
+    <string name="btn_announcements">Refraction</string>
+    <string name="eye_exam_aetiology">Eye Exam (Aetiology)</string>
+    <string name="action_needed">Action Needed</string>
+    <string name="prognosis">Prognosis</string>
+    <string name="education">Education</string>
+    <string name="full_diagnosis">Full Diagnosis</string>
+
+
 </resources>

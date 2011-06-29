@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="forms_array">
+        <item>Personal Details</item>
+        <item>Visual Assessment</item>
+        <item>General Assessment</item>
+        <item>Previous Eye Surgery</item>
+        <item>Eye Examination - site of abnormality</item>
+        <item>Refraction/low vision aid assessment</item>
+        <item>Eye Examination - aetiology</item>
+        <item>Action Needed</item>
+        <item>Prognosis for vision</item>
+        <item>Education</item>
+        <item>Full Diagnosis</item>
+        <item>Examiner</item>
+    </string-array>
+</resources>

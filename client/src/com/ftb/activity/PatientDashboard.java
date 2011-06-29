@@ -19,7 +19,7 @@ public class PatientDashboard extends TabActivity{
 
         TabHost tabHost = getTabHost();
         Resources res = getResources();
-        tabHost.addTab(tabHost.newTabSpec("Locate").setIndicator("Locate", res.getDrawable(R.drawable.ic_menu_preferences)).setContent(new Intent(this, LocatePatient.class)));
+        tabHost.addTab(tabHost.newTabSpec("Locate").setIndicator("Locate", res.getDrawable(R.drawable.ic_menu_preferences)).setContent(new Intent(this, LocationActivity.class)));
 
         Intent intent = new Intent(this, ViewPatient.class);
         intent.putExtra("id", extras.getString("id"));

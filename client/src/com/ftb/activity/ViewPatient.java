@@ -1,6 +1,8 @@
 package com.ftb.activity;
 
 import android.app.Activity;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -26,15 +28,17 @@ public class ViewPatient extends Activity {
 
     private void displayPatient(Patient patient) {
         LinearLayout layout = (LinearLayout) findViewById(R.id.viewSection);
-        layout.addView(getTextView("Name" + blank.substring(4)+ patient.name));
-        layout.addView(getTextView("Age" + blank.substring(3)+patient.patientdetails.age));
-        layout.addView(getTextView("Town"+ blank.substring(4)+patient.address.town));
-        layout.addView(getTextView("Family History" + blank.substring(14)+patient.familyhistory.affected_relation));
+        layout.addView(getTextView("Name  : " + patient.name));
+        layout.addView(getTextView("Age  : " + patient.getAge()));
+        layout.addView(getTextView("Town  : " + patient.getTown()));
+        layout.addView(getTextView("Family History  : " + patient.familyhistory.affected_relation));
+
     }
 
-    private TextView getTextView(String patientName) {
+    private TextView getTextView(String text) {
         TextView name = new TextView(this);
-        name.setText(patientName);
+        name.setText(text);
+        name.setTextColor(ColorStateList.valueOf(Color.BLACK));
         return name;
     }
 }
