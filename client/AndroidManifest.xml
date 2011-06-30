@@ -21,4 +21,6 @@
         <meta-data android:name="AA_DB_NAME" android:value="ftb.db" />
         <meta-data android:name="AA_DB_VERSION" android:value="3" />
     </application>
-</manifest> 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+</manifest>
