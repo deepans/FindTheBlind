@@ -9,7 +9,7 @@ div#content-main form {
 }
 #changeform_tabs {
     background:#fff none repeat scroll 0 0;
-    border-bottom:1px solid #ccc;
+    border-bottom:1px solid #adadad;
     float:left;
     font-size:93%;
     line-height:normal;
@@ -33,7 +33,7 @@ div#content-main form {
 /*    border-bottom: 1px solid #adadad;*/
 }
 #changeform_tabs a:hover span, #changeform_tabs div.selected a span {
-    color:#24618E;
+    color:#FFFFFF;
     background:transparent url(../images/tab_blue.gif) repeat scroll right top;
 }
 /*
