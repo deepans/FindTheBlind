@@ -121,6 +121,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ftb',
+    'json',
     'django_nose',
     'django.contrib.admin',
     'locking',
