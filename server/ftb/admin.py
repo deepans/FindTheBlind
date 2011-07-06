@@ -54,8 +54,7 @@ class PatientAdmin(TabbedModelAdmin, LockableAdmin):
         js = ('/static/admin/js/jquery.min.js',
               '/static/admin/js/jquery.init.js',
               '/static/admin/js/inlines.min.js',
-              'ftb/js/fielddeps.js',
-              '/static/locking/js/admin.locking.js',)
+              'ftb/js/fielddeps.js',)
         
 admin.site.register(Patient, PatientAdmin)
 
