@@ -8,10 +8,10 @@ TEST_CHOICES = (
 
 class Parent(models.Model, JsonEncodable):
     p_field1 = models.CharField('Field one', max_length=50)
-    relations_included_in_json = ('one_to_one_relation',)
+    relations_included_in_json = ('onetoonechild',)
 
 class OneToOneChild(models.Model):
     o2o_field1 = models.CharField('Field one', max_length=50)
     o2o_field2 = models.IntegerField('Field two')
     o2o_field3 = models.CharField('Field three', max_length=50, choices=TEST_CHOICES)
-    o2o_field4 = models.OneToOneField(Parent, related_name='one_to_one_relationy')
+    o2o_field4 = models.OneToOneField(Parent, related_name='onetoonechild')
