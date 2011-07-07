@@ -15,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class PatientList extends ListActivity {
+public class PatientListActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);

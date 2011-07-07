@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Find the Blind</string>
+    <string name="app_name">Find the Light</string>
     <string name="no_notes">No data available</string>
     <string name="password">Password:</string>
     <string name="login_label">Login</string>
@@ -17,6 +17,8 @@
     <string name="prognosis">Prognosis</string>
     <string name="education">Education</string>
     <string name="full_diagnosis">Full Diagnosis</string>
+    <string name="pd_name">Name</string>
+    <string name="pd_father_name">Father\'s name</string>
 
 
 </resources>

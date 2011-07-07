@@ -157,6 +157,8 @@ public final class R {
         public static final int login_label=0x7f070003;
         public static final int no_notes=0x7f070001;
         public static final int password=0x7f070002;
+        public static final int pd_father_name=0x7f070011;
+        public static final int pd_name=0x7f070010;
         public static final int prognosis=0x7f07000d;
     }
     public static final class style {

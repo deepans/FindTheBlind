@@ -11,7 +11,7 @@ import com.ftb.model.Patient;
 import com.ftb.util.ActiveRecordUtil;
 import com.ftb.util.GsonUtil;
 
-public class Login extends Activity {
+public class LoginActivity extends Activity {
 
     public void onCreate(Bundle savedInstanceState) {
 
@@ -33,7 +33,7 @@ public class Login extends Activity {
             public void onClick(View v) {
                 setupData();
                 LoginInfoModel loginInfoModel = getModel();
-                Intent intent = new Intent(Login.this, PatientList.class);
+                Intent intent = new Intent(LoginActivity.this, PatientListActivity.class);
                 startActivity(intent);
             }
         };
