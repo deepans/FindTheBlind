@@ -1,0 +1,29 @@
+{
+    "meta": {
+        "type": "meta",
+        "name": "General Assessment"
+    },
+    "additional_disability": {
+        "type": "integer",
+        "id": "0",
+        "default": "0",
+        "priority": "0",
+        "options": {
+            "0": "None",
+            "1": "Hearing loss",
+            "2": "Mental retardation",
+            "3": "Physical handicap",
+            "4": "Epilepsy",
+            "5": "Other"
+        },
+        "toggles":{
+            "5":["other"]
+        }
+    },
+    "other_please_specify":{
+        "type": "string",
+        "id": "1",
+        "default": "0",
+        "priority": "1"
+    }
+}

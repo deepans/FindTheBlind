@@ -1,0 +1,145 @@
+{
+    "meta": {
+        "type": "meta",
+        "name": "Patient Details" 
+    },
+    "name": {
+        "type": "string",
+        "id": "0",
+        "default": "",
+        "priority": "0"
+    },
+    "home_town_or_village": {
+        "type": "string",
+        "id": "1",
+        "default": "",
+        "priority": "1" 
+    },
+    "father_name": {
+        "type": "string",
+        "id": "2",
+        "default": "",
+        "priority": "2"
+    },
+    "father_phone_number": {
+        "type": "integer",
+        "id": "3",
+        "default": "",
+        "priority": "3"
+    },
+    "mother_name": {
+        "type": "string",
+        "id": "4",
+        "default": "",
+        "priority": "4"
+    },
+    "mother_phone_number": {
+        "type": "integer",
+        "id": "5",
+        "default": "",
+        "priority": "5"
+    },
+    "guardian_name": {
+        "type": "string",
+        "id": "6",
+        "default": "",
+        "priority": "6"
+    },
+    "guardian_phone_number": {
+        "type": "integer",
+        "id": "7",
+        "default": "",
+        "priority": "7"
+    },
+    "health_worker_name": {
+        "type": "string",
+        "id": "8",
+        "default": "",
+        "priority": "8"
+    },
+    "health_worker_phone_number": {
+        "type": "integer",
+        "id": "9",
+        "default": "",
+        "priority": "9"
+    },
+    "ethnic_group": {
+        "type": "string",
+        "id": "10",
+        "default": "",
+        "priority": "10"
+    },
+    "date_of_birth": {
+        "type": "string",
+        "id": "11",
+        "default": "",
+        "priority": "11"
+    },
+    "age": {
+        "type": "integer",
+        "id": "12",
+        "default": "",
+        "priority": "12"
+    },
+    "gender": {
+        "type": "integer",
+        "id": "13",
+        "default": "",
+        "priority": "13"
+    },
+    "age_at_onset_of_visual_loss": {
+        "type": "integer",
+        "id": "14",
+        "default": "0",
+        "priority": "14",
+        "options": {
+            "0": "None",
+            "1": "Since Birth",
+            "2": "First year of life",
+            "3": "Unknown",
+            "4": "Other"
+        },
+        "toggles": {
+          "4":["age_in_years"]
+        }
+    },
+    "age_in_years": {
+        "type": "integer",
+        "id": "15",
+        "default": "",
+        "priority": "15"
+    },
+    "is_there_a_family_history_of_same_condition": {
+        "type": "integer",
+        "id": "16",
+        "default": "",
+        "priority": "16",
+        "options": {
+            "0": "Select",
+            "1": "Yes",
+            "2": "No",
+            "3": "Unknown"
+        },
+        "toggles":{
+            "1":["who_is_affected"]
+        }
+    },
+    "who_is_affected": {
+        "type": "string",
+        "id": "17",
+        "default": "",
+        "priority": "17"
+    },
+    "is_there_history_of_consanguinity": {
+        "type": "integer",
+        "id": "18",
+        "default": "",
+        "priority": "18",
+        "options": {
+            "0": "Select",
+            "1": "Yes",
+            "2": "No",
+            "3": "Unknown"
+        }
+    }
+}

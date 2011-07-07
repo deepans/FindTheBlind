@@ -3,21 +3,22 @@
       package="com.ftb"
       android:versionCode="1"
       android:versionName="1.0">
-    <application android:label="FindTheBlind" android:name="com.activeandroid.Application" android:theme="@style/WordPress">
-        <activity android:name=".activity.Login"
+    <application android:label="FindTheLight" android:name="com.activeandroid.Application" android:theme="@style/WordPress">
+        <activity android:name=".activity.LoginActivity"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.PatientList" android:label="Patient List"/>
-        <activity android:name=".activity.ViewPatient" android:label="View Patient"/>
+        <activity android:name=".activity.PatientListActivity" android:label="Patient List"/>
+        <activity android:name=".activity.ViewPatientActivity" android:label="View Patient"/>
         <activity android:name=".activity.PatientDashboard" />
         <activity android:name=".activity.LocatePatient"/>
         <activity android:name=".activity.FormDashboardActivity" android:label="Select Form"/>
         <activity android:name=".activity.LocationActivity"/>
         <activity android:name=".activity.SelectFormActivity" android:label="Select Form"/>
+        <activity android:name=".activity.PatientDetailsActivity"/>
         <meta-data android:name="AA_DB_NAME" android:value="ftb.db" />
         <meta-data android:name="AA_DB_VERSION" android:value="3" />
     </application>

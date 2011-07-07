@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.ftb.R;
 import com.ftb.model.Patient;
 
-public class ViewPatient extends Activity {
+public class ViewPatientActivity extends Activity {
     String blank = "                   ";
 
     public void onCreate(Bundle savedInstanceState) {

@@ -1,0 +1,74 @@
+{
+    "meta": {
+        "type": "meta",
+        "name": "Previous Eye Surgery"
+    },
+    "right": {
+        "type": "integer",
+        "id": "0",
+        "default": "0",
+        "priority": "0",
+        "options": {
+            "0": "None",
+            "1": "Glaucoma",
+            "2": "Cataract",
+            "3": "Corneal Graft",
+            "4": "Optical Iridectomy",
+            "5": "Eye Removed",
+            "6": "Unknown type of surgery",
+            "7": "Other"
+        },
+        "toggles":{
+            "7":["other_please_specify_(right)"]
+        }
+    },
+    "other_please_specify_(right)":{
+        "type": "string",
+        "id": "1",
+        "default": "0",
+        "priority": "1"
+    },
+    "left": {
+        "type": "integer",
+        "id": "2",
+        "default": "0",
+        "priority": "2",
+        "options": {
+            "0": "None",
+            "1": "Glaucoma",
+            "2": "Cataract",
+            "3": "Corneal Graft",
+            "4": "Optical Iridectomy",
+            "5": "Eye Removed",
+            "6": "Unknown type of surgery",
+            "7": "Other"
+        },
+        "toggles":{
+            "7":["other_please_specify_(left)"]
+        }
+    },
+    "other_please_specify_(left)":{
+        "type": "string",
+        "id": "3",
+        "default": "0",
+        "priority": "3"
+    },
+    "full_details":{
+        "type": "label",
+        "id": "4",
+        "default": "",
+        "priority": "4"
+    },
+    "right_eye":{
+        "type": "description",
+        "id": "5",
+        "default": "",
+        "priority": "5"
+    },
+    "left_eye":{
+        "type": "description",
+        "id": "6",
+        "default": "",
+        "priority": "6"
+    }
+}
