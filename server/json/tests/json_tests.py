@@ -18,19 +18,22 @@ class JsonTestCase(TestCase):
                 
     def test_should_encode_a_model_with_one_to_one_relation_into_json_representation(self):
         parent = ParentFactory.create_related()
-        expected_json_string = '{' +\
-                                   '"onetoonechild": {' +\
-                                       '"pk": 1, ' +\
-                                       '"model": "tests.onetoonechild", ' +\
-                                       '"o2o_field4": 1, ' +\
-                                       '"o2o_field3": "k2", ' +\
-                                       '"o2o_field2": 100, ' +\
-                                       '"o2o_field1": "o2ofield1value"' +\
-                                   '}, ' +\
-                                   '"pk": 1, ' +\
-                                   '"model": "tests.parent", ' +\
-                                   '"p_field1": "pfield1value"' +\
-                               '}'
+        expected_json_string = '{"onetoonechild" : { "model" : "tests.onetoonechild", ' +\
+                                                     '"o2o_field1" : "o2ofield1value", ' +\
+                                                     '"o2o_field2" : 100, ' +\
+                                                     '"o2o_field3" : "k2", ' +\
+                                                     '"o2o_field4" : 1, ' +\
+                                                     '"onetomanychild" : { "model" : "tests.onetomanychild", ' +\
+                                                                          '"o2m_field1" : "o2mfield1value", ' +\
+                                                                          '"o2m_field2" : 1, ' +\
+                                                                          '"pk" : 1' +\
+                                                                          '}, ' +\
+                                                     '"pk" : 1 ' +\
+                                                     '}, ' +\
+                                 '"pk" : 1 ' +\
+                                 '"model" : "tests.parent", ' +\
+                                 '"p_field1" : "pfield1value", ' +\
+                                 '}'
         self.assertEquals(expected_json_string,
                           Parent.objects.select_related('one_to_one_relation').get(id=parent.id).json_encode())
         

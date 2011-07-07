@@ -5,13 +5,13 @@ class CreateRelatedMixin(object):
 
     @classmethod
     def create_related(cls, **kwargs):
-        from ftb import model_factory
+        from json import model_factory
         obj = cls.create(**kwargs)
-        for related_object in Patient._meta.get_all_related_objects():
-            getattr(model_factory,
-                    related_object.model.__name__ + 'Factory').create(**{related_object.field.name: obj})
+        for related_object in cls.__dict__['_associated_class']._meta.get_all_related_objects():
+            related_factory = getattr(model_factory, related_object.model.__name__ + 'Factory')
+            getattr(related_factory, 'create_related' if CreateRelatedMixin in related_factory.__bases__ else 'create')(**{related_object.field.name: obj})
         return obj
-
+    
 class PatientFactory(Factory, CreateRelatedMixin):
     FACTORY_FOR = Patient
     name = 'DeepanS'
