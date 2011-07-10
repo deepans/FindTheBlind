@@ -2,7 +2,8 @@ import ftb.signals
 from django.db import models
 from choices import VISUAL_LOSS_AGE_CHOICES, GENDER_CHOICES
 from locking.models import LockableModel
-from ftb.mixins import ConcurrentlyModifiable, JsonEncodable
+from ftb.mixins import ConcurrentlyModifiable
+from json.mixins import JsonEncodable
 from django.core.exceptions import ValidationError
 
 class Patient(LockableModel, ConcurrentlyModifiable, JsonEncodable):

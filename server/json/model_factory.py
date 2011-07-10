@@ -1,5 +1,5 @@
 from factory import Factory, LazyAttribute
-from json.tests.models import Parent, OneToOneChild, OneToManyChild
+from json.tests.models import Parent, OneToOneChild, OneToManyChild, SimpleModelOne, SimpleModelTwo, OneToOneParent
 
 class CreateRelatedMixin(object):
 
@@ -27,3 +27,20 @@ class OneToManyChildFactory(Factory):
     FACTORY_FOR = OneToManyChild
     o2m_field1 = 'o2mfield1value'
     o2m_field2 = LazyAttribute(lambda a: OneToOneChildFactory())
+
+class SimpleModelOneFactory(Factory):
+    FACTORY_FOR = SimpleModelOne
+    field1 = 'Field one'
+    field2 = 100
+
+class SimpleModelTwoFactory(Factory):
+    FACTORY_FOR = SimpleModelTwo
+    field1 = 'Field one value'
+    field2 = 150
+
+class OneToOneParentFactory(Factory):
+    FACTORY_FOR = OneToOneParent
+    p_field1 = 'parent field 1 value'
+    o2o_child1 = LazyAttribute(lambda a: SimpleModelOneFactory())
+    o2o_child2 = LazyAttribute(lambda a: SimpleModelTwoFactory())
+    

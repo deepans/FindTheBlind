@@ -95,6 +95,68 @@ class Serializer(python.Serializer):
         related = getattr(obj, fname)
         self.__handle_reverse_relation(fname, related)
 
+    def handle_fk_field(self, obj, field):
+        """
+        Called to handle a ForeignKey field.
+        Recursively serializes relations specified in the 'relations' option.
+        """
+        fname = field.name
+        related = getattr(obj, fname)
+        if related is not None:
+            if fname in self.relations:
+                # perform full serialization of FK
+                serializer = Serializer()
+                options = {}
+                if isinstance(self.relations, dict):
+                    if isinstance(self.relations[fname], dict):
+                        options = self.relations[fname]
+                self._fields[fname] = serializer.serialize([related],
+                                                           **options)[0]
+            else:
+                # emulate the original behaviour and serialize the pk value
+                if self.use_natural_keys and hasattr(related, 'natural_key'):
+                    related = related.natural_key()
+                else:
+                    if field.rel.field_name == related._meta.pk.name:
+                        # Related to remote object via primary key
+                        related = related._get_pk_val()
+                    else:
+                        # Related to remote object via other field
+                        related = smart_unicode(getattr(related,
+                                                        field.rel.field_name), strings_only=True)
+                self._fields[fname] = related
+        else:
+            self._fields[fname] = smart_unicode(related, strings_only=True)
+
+    def handle_m2m_field(self, obj, field):
+        """
+        Called to handle a ManyToManyField.
+        Recursively serializes relations specified in the 'relations' option.
+        """
+        if field.rel.through._meta.auto_created:
+            fname = field.name
+            if fname in self.relations:
+                # perform full serialization of M2M
+                serializer = Serializer()
+                options = {}
+                if isinstance(self.relations, dict):
+                    if isinstance(self.relations[fname], dict):
+                        options = self.relations[fname]
+                self._fields[fname] = [
+                    serializer.serialize([related], **options)[0]
+                    for related in getattr(obj, fname).iterator()]
+            else:
+                # emulate the original behaviour and serialize to a list of 
+                # primary key values
+                if self.use_natural_keys and hasattr(field.rel.to, 'natural_key'):
+                    m2m_value = lambda value: value.natural_key()
+                else:
+                    m2m_value = lambda value: smart_unicode(
+                        value._get_pk_val(), strings_only=True)
+                self._fields[fname] = [m2m_value(related)
+                                       for related in getattr(obj, fname).iterator()]
+
+        
     def end_object(self, obj):
         """
         Called when serializing of an object ends.
