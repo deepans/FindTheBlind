@@ -10,6 +10,7 @@ import android.hardware.SensorManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -73,7 +74,7 @@ public class LocationActivity extends Activity {
 
 	private void calculateDirection2() {
 		float azimuth = sensorEventListener.getAzimuth();
-		azimuth = azimuth * 360 / (2 * (float) Math.PI);
+		azimuth = azimuth * 360.0f / (2.0f * (float) Math.PI);
 		// userLocation = locationListener.getLocation();
 
 		if (userLocation == null) {
@@ -85,25 +86,18 @@ public class LocationActivity extends Activity {
 		// GeomagneticField patientGeoLocation = getGeoField(patientLocation);
 
 		float heading = Double.valueOf(azimuth).floatValue();
-		// float heading = userLocation.get
 		float bearingDistanceInAngleOfTrueNorth = userLocation
 				.bearingTo(patientLocation);
 		// to adjust the declination
 		heading += userGeoField.getDeclination();
 
-		// heading = bearingDistanceInAngleOfTrueNorth -
-		// (bearingDistanceInAngleOfTrueNorth + heading);
-		// float finalAngle = Math.round(-heading/360.0f + 180.0f);
-		// arrow.setDirection(finalAngle);
-
 		float direction = heading - bearingDistanceInAngleOfTrueNorth;
 		 arrow.setDirection(-direction);
-		//locationView.setDirection(-direction, userLocation, patientLocation);
 
-		allValues.setText("H" + azimuth + " | UserLocation:"
+		allValues.setText("Azimuth : " + azimuth + " | UserLocation:"
 				+ userLocation.getLatitude() + ","
 				+ userLocation.getLongitude() + " | beaingDistance"
-				+ bearingDistanceInAngleOfTrueNorth + " Final angle");
+				+ bearingDistanceInAngleOfTrueNorth + " | Final angle" + direction);
 
 		float distanceBetweenPoints = userLocation.distanceTo(patientLocation);
 		distance.setText("Distance : " + Float.toString(distanceBetweenPoints)
@@ -152,6 +146,15 @@ public class LocationActivity extends Activity {
 		simulateButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
+				int posOrNeg = (int) (((Math.random() * 100)/10)%2);
+            	double lat = ((Math.random() * 100));
+            	lat = posOrNeg == 0 ? lat : -lat;
+            	
+            	posOrNeg = (int) (((Math.random() * 100)/10)%2);
+            	double lon = ((Math.random() * 100));
+            	lon = posOrNeg == 0 ? lon : -lon;
+            	
+            	LocationActivity.this.userLocation = getLocation(lat, lon);				
 				calculateDirection2();
 			}
 		});
