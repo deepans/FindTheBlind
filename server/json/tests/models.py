@@ -20,7 +20,6 @@ class OneToManyChild(models.Model):
     o2m_field1 = models.CharField('Field one', max_length=50)
     o2m_field2 = models.ForeignKey(OneToOneChild, related_name='onetomanychild')
 
-
 class SimpleModelOne(models.Model, JsonEncodable):
     field1 = models.CharField('Field one', max_length=50)
     field2 = models.IntegerField('Field Two')

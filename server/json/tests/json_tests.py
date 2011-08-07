@@ -1,7 +1,7 @@
 from django.test import TestCase
 from json.model_factory import ParentFactory, OneToOneParentFactory
 from json.tests.models import Parent, OneToOneChild, OneToManyChild, SimpleModelOne, SimpleModelTwo, OneToOneParent
-from json.persister import SimpleDbObjectPersister, OneToOneFwdRelPersister, DbObjectLocator
+from json.persister import DbObjectLocator, ReplaceLatestMergeStrategy
 from json.tests.test_models_manager import TestModelsManager
 from json.persister import persist
 import simplejson
@@ -18,7 +18,7 @@ class JsonTestCase(TestCase):
                 'json',
                 'json.tests',
                 'django_nose',))
-                
+        
     def test_should_convert_multi_level_hierarchical_model_to_its_json_representation(self):
         parent = ParentFactory.create_related()
         expected_json_string = '{"onetoonechild": {"o2o_field1": "o2ofield1value", ' +\
@@ -37,7 +37,7 @@ class JsonTestCase(TestCase):
 
         self.assertEquals(simplejson.loads(expected_json_string),
                           simplejson.loads(Parent.objects.select_related('one_to_one_relation').get(id=parent.id).json_encode()))
-
+        
     def test_should_create_new_hierarchical_entities_to_the_database_from_json_string(self):
         self.assertEquals(0, Parent.objects.count())
         self.assertEquals(0, OneToOneChild.objects.count())
@@ -66,8 +66,6 @@ class JsonTestCase(TestCase):
     def tearDown(self):
         self.test_models_manager.revert()
 
-
-
 class PersisterTestCase(TestCase):
     def test_should_identify_db_object_by_surragate_key(self):
         parent = ParentFactory.create_related()
@@ -91,7 +89,7 @@ class PersisterTestCase(TestCase):
                       "model": "tests.simplemodelone",
                       "field2": 1}
 
-        SimpleDbObjectPersister().persist(properties)
+        ReplaceLatestMergeStrategy().persist(properties)
 
         self.assertEquals(1, SimpleModelOne.objects.count())
         object_from_db = SimpleModelOne.objects.get()
@@ -105,7 +103,7 @@ class PersisterTestCase(TestCase):
                       "model": "tests.simplemodelone",
                       "field2": 100}
 
-        SimpleDbObjectPersister().persist(properties)
+        ReplaceLatestMergeStrategy().persist(properties)
 
         self.assertEquals(1, SimpleModelOne.objects.count())
         object_from_db = SimpleModelOne.objects.get()
@@ -115,10 +113,6 @@ class PersisterTestCase(TestCase):
         self.assertEquals(100, object_from_db.field2)
 
     def test_should_create_or_update_a_model_with_one_to_one_child_relation(self):
-        p = OneToOneParentFactory.create()
-        self.assertEquals('dsafk',
-                          OneToOneParent.objects.get(id=p.id).json_encode())
-
         self.assertEquals(0, SimpleModelOne.objects.count())
         self.assertEquals(0, SimpleModelTwo.objects.count())
         self.assertEquals(0, OneToOneParent.objects.count())
@@ -135,11 +129,11 @@ class PersisterTestCase(TestCase):
                       "model": "tests.onetooneparent",
                       "p_field1": "parent field 1 value"}
 
-        OneToOneFwdRelPersister().persist(properties)
+        ReplaceLatestMergeStrategy().persist(properties)
         
         self.assertEquals(1, SimpleModelOne.objects.count())
         self.assertEquals(1, SimpleModelTwo.objects.count())        
         self.assertEquals(1, OneToOneParent.objects.count())
 
-
+        
         

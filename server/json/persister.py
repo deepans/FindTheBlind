@@ -1,29 +1,40 @@
 from django.db.models.loading import get_model
+from django.db.models.fields.related import OneToOneField
 
 def persist(json_string):
     pass
 
 class ReplaceLatestMergeStrategy(object):
-    def merge_simple_db_object(self, db_object, **properties):
-        for name, value in properties.iteritems():
-            setattr(db_object, name, value)
-        db_object.save()
+    def _handle_field(self, db_object, field, value):
+        setattr(db_object, field.name, value)
+        return db_object
 
-class SimpleDbObjectPersister(ReplaceLatestMergeStrategy):
+    def _handle_one_to_one_forward_rel(self, db_object, field, properties):
+        setattr(db_object, field.name, self.persist(properties))
+        return db_object
+
+    def _handle_relation(self, db_object, field, properties):
+        return {OneToOneField: self._handle_one_to_one_forward_rel}[type(field)](db_object, field, properties)
+
+    def merge_and_persist(self, model_cls, db_object, **properties):
+        for field in model_cls._meta.fields:
+            if properties.has_key(field.name):
+                if not field.rel:
+                    db_object = self._handle_field(db_object, field, properties[field.name])
+                else:
+                    db_object = self._handle_relation(db_object, field, properties[field.name])
+
+        db_object.save()
+        return db_object
+
     def persist(self, properties):
         model_name = properties.pop('model')
         model_cls = DbObjectLocator.get_class_from_name(model_name)
         db_object = DbObjectLocator.identify_by_surragate_key(model_name, properties.pop('pk'))
+        db_object = db_object if db_object else model_cls()
+        
+        return self.merge_and_persist(model_cls, db_object, **properties)
 
-        if db_object:
-            self.merge_simple_db_object(db_object, **properties)
-        else:
-            model_cls(**properties).save()
-
-class OneToOneFwdRelPersister(ReplaceLatestMergeStrategy):
-    def persist(self, properties):
-        pass
-            
 class DbObjectLocator(object):
 
     @classmethod
