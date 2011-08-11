@@ -30,7 +30,8 @@ class ReplaceLatestMergeStrategy(object):
     def persist(self, properties):
         model_name = properties.pop('model')
         model_cls = DbObjectLocator.get_class_from_name(model_name)
-        db_object = DbObjectLocator.identify_by_surragate_key(model_name, properties.pop('pk'))
+        db_object = DbObjectLocator.identify_by_surragate_key(model_name, properties.pop('pk')) if properties.has_key('pk') else None
+
         db_object = db_object if db_object else model_cls()
         
         return self.merge_and_persist(model_cls, db_object, **properties)
@@ -44,12 +45,14 @@ class DbObjectLocator(object):
     
     @classmethod
     def identify_by_surragate_key(cls, model_name, value):
-        model_class = cls.get_class_from_name(model_name)
+        if value:
+            model_class = cls.get_class_from_name(model_name)
 
-        try:
-            return model_class.objects.get(**{model_class._meta.pk.name:value})
-        except model_class.DoesNotExist:
-            return None
+            try:
+                return model_class.objects.get(**{model_class._meta.pk.name:value})
+            except model_class.DoesNotExist:
+                return None
+        return None
 
     @classmethod
     def identify_all_by_surragate_keys(cls, model_name, values):

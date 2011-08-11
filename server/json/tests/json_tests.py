@@ -70,6 +70,7 @@ class PersisterTestCase(TestCase):
     def test_should_identify_db_object_by_surragate_key(self):
         parent = ParentFactory.create_related()
         self.assertEquals(parent, DbObjectLocator.identify_by_surragate_key('tests.parent', parent.id))
+        self.assertEquals(None, DbObjectLocator.identify_by_surragate_key('tests.parent', None))
         
     def test_should_identify_multiple_db_objects_by_surragate_keys(self):
         parent1 = ParentFactory.create_related()
@@ -117,8 +118,7 @@ class PersisterTestCase(TestCase):
         self.assertEquals(0, SimpleModelTwo.objects.count())
         self.assertEquals(0, OneToOneParent.objects.count())
         
-        properties = {"o2o_child1": {"pk": 1,
-                                    "model": "tests.simplemodelone",
+        properties = {"o2o_child1": {"model": "tests.simplemodelone",
                                     "field2": 100,
                                     "field1": "Field one"},
                       "o2o_child2": {"pk": 1,
