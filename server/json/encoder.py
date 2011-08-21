@@ -1,3 +1,5 @@
+from json.utils import process_item_or_list
+
 """New base serializer class to handle full serialization of model objects."""
 try:
     from cStringIO import StringIO
@@ -60,7 +62,10 @@ class Serializer(python.Serializer):
         return self.getvalue()
 
     def __handle_reverse_relation(self, fname, related):
-        if related is not None:
+        def serialize_relation(rel, **args):
+            return serializer.serialize([rel], **args)[0]
+            
+        if related:
             if fname in self.relations:
                 # perform full serialization of relation
                 serializer = Serializer()
@@ -68,23 +73,24 @@ class Serializer(python.Serializer):
                 if isinstance(self.relations, dict):
                     if isinstance(self.relations[fname], dict):
                         options = self.relations[fname]
-                self._fields[fname] = serializer.serialize([related], **options)[0]
+                self._fields[fname] = process_item_or_list(serialize_relation, related, **options)        
             else:
                 # emulate the original behaviour and serialize the pk value
                 if self.use_natural_keys and hasattr(related, 'natural_key'):
-                    related = related.natural_key()
+                    related = process_item_or_list(lambda rel: rel.natural_key(), related)
                 else:
                     # Related to remote object via primary key
-                    related = related._get_pk_val()
+                    related = process_item_or_list(lambda rel: rel._get_pk_val(), related)
                 self._fields[fname] = related
         else:
             self._fields[fname] = smart_unicode(related, strings_only=True)
 
 
     def handle_reverse_fk_relation(self, obj, relation):
-        fname = relation.var_name
+        fname = relation.field.rel.related_name 
+        fname = fname if fname else (relation.var_name + '_set')
         for related in getattr(obj, fname).all():
-            self.__handle_reverse_relation(fname, related)
+            self.__handle_reverse_relation(fname, [related for related in getattr(obj, fname).all()])
             
     def handle_reverse_o2o_relation(self, obj, relation):
         """
@@ -92,8 +98,12 @@ class Serializer(python.Serializer):
         Recursively serializes relations specified in the 'relations' option.
         """
         fname = relation.var_name
-        related = getattr(obj, fname)
-        self.__handle_reverse_relation(fname, related)
+        try:
+            related = getattr(obj, fname)
+        except relation.model.DoesNotExist:
+            pass
+        else:
+            self.__handle_reverse_relation(fname, related)
 
     def handle_fk_field(self, obj, field):
         """
