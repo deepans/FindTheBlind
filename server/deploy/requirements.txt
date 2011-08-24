@@ -8,4 +8,4 @@ psycopg2==2.4
 django-locking==0.3.0
 fabric==1.0.1
 factory_boy==1.0.0
-dofstuff-django-serializers==1.1.0
+wadofstuff-django-serializers==1.1.0

@@ -1,4 +1,4 @@
 www:
     type: python
-data:
+db:
     type: postgresql

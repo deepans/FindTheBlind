@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+import os
+
+if not os.access('static', os.F_OK):
+    os.mkdir('static')
+
+# To import anything under django.*, we must set this variable.
+os.environ['DJANGO_SETTINGS_MODULE'] = 'server.settings'
+# Import the admin module. The media directory is right under it!
+import django.contrib.admin
+# Retrieve the absolute path of the admin module.
+admindir = os.path.dirname(django.contrib.admin.__file__)
+# Add /media behind it.
+mediadir = os.path.join(admindir, 'media')
+# Compute the path of the symlink under the static directory.
+staticlink = os.path.join('static', 'admin_media')
+# If the link already exists, delete it.
+if os.path.islink(staticlink):
+    os.unlink(staticlink)
+# Install the correct link.
+os.symlink(mediadir, staticlink)
+
+import server.settings
+settings_dir = os.path.dirname(server.settings.__file__)
+settings_prod = os.path.join(settings_dir, 'settings_prod.py')
+settings_link = os.path.join(settings_dir, 'settings.py')
+if os.path.islink(settings_link):
+    os.unlink(settings_link)
+os.symlink(settings_prod, settings_link)
+
+static_folder = os.path.join(settings_dir, os.path.join('ftb', 'static', ''))
+for file_name in os.listdir(static_folder):
+    static_file = os.path.join(static_folder, file_name)
+    static_link = os.path.join('static', file_name)
+    if os.path.islink(static_link):
+        os.unlink(static_link)
+    os.symlink(static_file, static_link)
+
