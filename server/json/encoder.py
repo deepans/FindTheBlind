@@ -1,4 +1,4 @@
-from json.utils import process_item_or_list
+from server.json.utils import process_item_or_list
 
 """New base serializer class to handle full serialization of model objects."""
 try:

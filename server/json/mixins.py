@@ -1,4 +1,4 @@
-from json.encoder import JsonEncoder
+from server.json.encoder import JsonEncoder
 
 class JsonEncodable(JsonEncoder):
     def json_encode(self, **options):
