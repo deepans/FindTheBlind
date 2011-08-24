@@ -6,6 +6,7 @@ from django.contrib.sites.models import Site
 from ftb.adminsite.adminforms import FamilyHistoryForm
 from locking.admin import LockableAdmin
 from ftb.adminsite.modeladmin import TabbedModelAdmin
+from settings import ADMIN_MEDIA_PREFIX
 
 admin.site.unregister(AuthUser)
 admin.site.unregister(Group)
@@ -51,9 +52,9 @@ class PatientAdmin(TabbedModelAdmin, LockableAdmin):
     home_town.short_description = 'Town/Village'
 
     class Media:
-        js = ('/static/admin/js/jquery.min.js',
-              '/static/admin/js/jquery.init.js',
-              '/static/admin/js/inlines.min.js',
+        js = (ADMIN_MEDIA_PREFIX + 'js/jquery.min.js',
+              ADMIN_MEDIA_PREFIX + 'js/jquery.init.js',
+              ADMIN_MEDIA_PREFIX + 'js/inlines.min.js',
               'ftb/js/fielddeps.js',)
         
 admin.site.register(Patient, PatientAdmin)

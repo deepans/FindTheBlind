@@ -21,11 +21,11 @@ class OneToManyChild(models.Model):
     o2m_field2 = models.ForeignKey(OneToOneChild, related_name='onetomanychild')
 
 
-class SimpleModelOne(models.Model, JsonEncodable):
+class SimpleModelOne(models.Model):
     field1 = models.CharField('Field one', max_length=50)
     field2 = models.IntegerField('Field Two')
 
-class SimpleModelTwo(models.Model, JsonEncodable):
+class SimpleModelTwo(models.Model):
     field1 = models.CharField('Field one', max_length=50)
     field2 = models.IntegerField('Field Two')
 
@@ -33,6 +33,29 @@ class OneToOneParent(models.Model, JsonEncodable):
     p_field1 = models.CharField('Field one', max_length=50)    
     o2o_child1 = models.OneToOneField(SimpleModelOne)
     o2o_child2 = models.OneToOneField(SimpleModelTwo)
-    relations_included_in_json = ('o2o_child1', 'o2o_child2')
+    relations_included_in_json = ('o2o_child1', 'o2o_child2', 'reverseonetoonechild')
+    
+class ReverseOneToOneChild(models.Model):
+    field1 = models.CharField('Field one', max_length=50)
+    field2 = models.IntegerField('Field Two')
+    field3 = models.OneToOneField(OneToOneParent, related_name='reverseonetoonechild')
 
+class SimpleModelThree(models.Model):
+    field1 = models.CharField('Field one', max_length=50)
+    field2 = models.IntegerField('Field Two')
+
+class SimpleModelFour(models.Model):
+    field1 = models.CharField('Field one', max_length=50)
+    field2 = models.IntegerField('Field Two')
+    
+class OneToManyParent(models.Model, JsonEncodable):
+    p_field1 = models.CharField('Field one', max_length=50)    
+    o2m_child1 = models.ForeignKey(SimpleModelThree, related_name='onetomanyparent_rel')
+    o2m_child2 = models.ForeignKey(SimpleModelFour)
+    relations_included_in_json = ('o2m_child1', 'o2m_child2', 'reverseonetomanychild')
+
+class ReverseOneToManyChild(models.Model):
+    field1 = models.CharField('Field one', max_length=50)
+    field2 = models.IntegerField('Field Two')
+    field3 = models.ForeignKey(OneToManyParent, related_name='reverseonetomanychild')
     
