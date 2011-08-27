@@ -1,1 +1,3 @@
-# Create your views here.
+def patients(request):
+    def doGET(request):
+        

@@ -1,11 +1,12 @@
 from factory import Factory, LazyAttribute
 from ftb.models import Patient, PatientDetails, Address, FamilyHistory
+from datetime import date
 
 class CreateRelatedMixin(object):
 
     @classmethod
     def create_related(cls, **kwargs):
-        from json import model_factory
+        from ftb import model_factory
         obj = cls.create(**kwargs)
         for related_object in cls.__dict__['_associated_class']._meta.get_all_related_objects():
             related_factory = getattr(model_factory, related_object.model.__name__ + 'Factory')
@@ -14,16 +15,25 @@ class CreateRelatedMixin(object):
     
 class PatientFactory(Factory, CreateRelatedMixin):
     FACTORY_FOR = Patient
-    name = 'DeepanS'
+    name = 'Arjun'
 
 class PatientDetailsFactory(Factory):
     FACTORY_FOR = PatientDetails
     ethnic_group = 'Hindu'
     age = 29
-    sex = 'M'
+    date_of_birth = date(2011, 1, 31)
+    gender = 'M'
+    fathers_name = 'Ramanan'
+    fathers_phone_number = 9520012200
+    mothers_name = 'Sita'
+    mothers_phone_number = 9520012211
+    guardians_name = 'John'
+    guardians_phone_number = 9520012222
+    health_workers_name = 'Ahmad'
+    health_workers_phone_number = 9520012233
     visual_loss_age = 99
     patient = LazyAttribute(lambda a: PatientFactory())
-    
+
 class AddressFactory(Factory):
     FACTORY_FOR = Address
     town = 'Neyveli'

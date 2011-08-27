@@ -157,7 +157,101 @@ class PersisterTestCase(TestCase):
         self.assertEquals(1, SimpleModelFour.objects.count())
         self.assertEquals(1, OneToManyParent.objects.count())
         self.assertEquals(2, ReverseOneToManyChild.objects.count())
+
+        expected_json = '{ "model" : "tests.onetomanyparent",' +\
+                        '"o2m_child1" : { "field1" : "Field one",' +\
+                                          '"field2" : 100,' +\
+                                          '"model" : "tests.simplemodelthree",' +\
+                                          '"onetomanyparent_rel" : [ 1 ],' +\
+                                          '"pk" : 1},' +\
+                        '"o2m_child2" : { "field1" : "Field one value",' +\
+                                          '"field2" : 150,' +\
+                                          '"model" : "tests.simplemodelfour",' +\
+                                          '"onetomanyparent_set" : [ 1 ],' +\
+                                          '"pk" : 1},' +\
+                        '"p_field1" : "parent field 1 value",' +\
+                        '"pk" : 1,' +\
+                        '"reverseonetomanychild" : [ { "field1" : "Field 1 value",' +\
+                                                     '"field2" : 199,' +\
+                                                     '"field3" : 1,' +\
+                                                     '"model" : "tests.reverseonetomanychild",' +\
+                                                     '"pk" : 1},' +\
+                                                   '{ "field1" : "some test",' +\
+                                                     '"field2" : 100,' +\
+                                                     '"field3" : 1,' +\
+                                                     '"pk" : 2,' +\
+                                                     '"model" : "tests.reverseonetomanychild"}' +\
+                                               ']' +\
+                   '}'
+
+        self.assertEquals(simplejson.loads(expected_json),
+                          simplejson.loads(OneToManyParent.objects.get(p_field1='parent field 1 value').json_encode()))
+
+        # update scenario
+        updated_properties = { "model" : "tests.onetomanyparent",
+                               "o2m_child1" : { "field1" : "Field one updated",
+                                                "field2" : 10,
+                                                "model" : "tests.simplemodelthree",
+                                                "onetomanyparent_rel" : [ 1 ],
+                                                "pk" : 1},
+                               "o2m_child2" : { "field1" : "updated Field one value",
+                                                "field2" : 850,
+                                                "model" : "tests.simplemodelfour",
+                                                "onetomanyparent_set" : [ 1 ],
+                                                "pk" : 1},
+                               "p_field1" : "parent field 1 value - is updated",
+                               "pk" : 1,
+                               "reverseonetomanychild" : [ { "field1" : "Field 1 updated value",
+                                                             "field2" : 149,
+                                                             "field3" : 1,
+                                                             "model" : "tests.reverseonetomanychild",
+                                                             "pk" : 1},
+                                                           { "field1" : "some other test",
+                                                             "field2" : 1000,
+                                                             "field3" : 1,
+                                                             "model" : "tests.reverseonetomanychild"}
+                                                       ]
+                           }
         
+        ReplaceLatestMergeStrategy().persist(updated_properties)        
+
+        self.assertEquals(1, SimpleModelThree.objects.count())
+        self.assertEquals(1, SimpleModelFour.objects.count())
+        self.assertEquals(1, OneToManyParent.objects.count())
+        self.assertEquals(2, ReverseOneToManyChild.objects.count())
+        
+        
+        expected_updated_properties = '{ "model" : "tests.onetomanyparent",' +\
+                                         '"o2m_child1" : {"field1" : "Field one updated",' +\
+                                                          '"field2" : 10,' +\
+                                                          '"model" : "tests.simplemodelthree",' +\
+                                                          '"onetomanyparent_rel" : [ 1 ],' +\
+                                                          '"pk" : 1},' +\
+                                         '"o2m_child2" : {"field1" : "updated Field one value",' +\
+                                                          '"field2" : 850,' +\
+                                                          '"model" : "tests.simplemodelfour",' +\
+                                                          '"onetomanyparent_set" : [ 1 ],' +\
+                                                          '"pk" : 1},' +\
+                                         '"p_field1" : "parent field 1 value - is updated",' +\
+                                         '"pk" : 1,' +\
+                                         '"reverseonetomanychild" : [{"field1" : "Field 1 updated value",' +\
+                                                                      '"field2" : 149,' +\
+                                                                      '"field3" : 1,' +\
+                                                                      '"model" : "tests.reverseonetomanychild",' +\
+                                                                      '"pk" : 3},' +\
+                                                                     '{"field1" : "some other test",' +\
+                                                                       '"field2" : 1000,' +\
+                                                                       '"field3" : 1,' +\
+                                                                       '"pk" : 4,' +\
+                                                                       '"model" : "tests.reverseonetomanychild"}' +\
+                                                                    ']' +\
+                                     '}'
+
+        self.assertRaises(OneToManyParent.DoesNotExist, OneToManyParent.objects.get, p_field1='parent field 1 value')
+        print OneToManyParent.objects.get(p_field1='parent field 1 value - is updated').json_encode()
+        self.assertEquals(simplejson.loads(expected_updated_properties),
+                          simplejson.loads(OneToManyParent.objects.get(p_field1='parent field 1 value - is updated').json_encode()))
+
         
     def test_should_create_or_update_a_model_with_one_to_one_child_relation(self):
         # create scenario
@@ -251,6 +345,11 @@ class PersisterTestCase(TestCase):
                                  '"model": "tests.onetooneparent",' +\
                                  '"p_field1": "parent field 1 value updated"}'
 
+        self.assertEquals(1, SimpleModelOne.objects.count())
+        self.assertEquals(1, SimpleModelTwo.objects.count())
+        self.assertEquals(1, ReverseOneToOneChild.objects.count())
+        self.assertEquals(1, OneToOneParent.objects.count())
+        
         self.assertRaises(OneToOneParent.DoesNotExist, OneToOneParent.objects.get, p_field1='parent field 1 value')
         
         self.assertEquals(simplejson.loads(expected_updated_json),
