@@ -1,0 +1,12 @@
+.inline-group .aligned label {
+    width: 20em;
+}
+
+.aligned label {
+    width: 20em;
+}
+
+.inline-group .aligned .form-row {
+    float: left;
+    width: 500px;
+}

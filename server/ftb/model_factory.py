@@ -24,13 +24,13 @@ class PatientDetailsFactory(Factory):
     date_of_birth = date(2011, 1, 31)
     gender = 'M'
     fathers_name = 'Ramanan'
-    fathers_phone_number = 9520012200
+    fathers_phone_number = '9520012200'
     mothers_name = 'Sita'
-    mothers_phone_number = 9520012211
+    mothers_phone_number = '9520012211'
     guardians_name = 'John'
-    guardians_phone_number = 9520012222
+    guardians_phone_number = '9520012222'
     health_workers_name = 'Ahmad'
-    health_workers_phone_number = 9520012233
+    health_workers_phone_number = '9520012233'
     visual_loss_age = 99
     patient = LazyAttribute(lambda a: PatientFactory())
 

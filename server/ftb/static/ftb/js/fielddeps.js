@@ -1,5 +1,5 @@
 
-var ftb = {
+var ftb_dep_fields = {
     set_none : function(element){
         if(element.is('select')){
             element.val(element.find('option:selected'));
@@ -16,7 +16,7 @@ var ftb = {
             if(!dependent_on.attr('disabled') && selected_value == dependent_value){
                 dependent_element.attr('disabled', false);
             }else {
-                ftb.set_none(dependent_element);
+                ftb_dep_fields.set_none(dependent_element);
                 dependent_element.attr('disabled', true);
             }
         }
@@ -36,5 +36,5 @@ var ftb = {
 };
 
 (function($){
-    $(document).ready(ftb.disable_all_dependent_fields)
+    $(document).ready(ftb_dep_fields.disable_all_dependent_fields)
 })(django.jQuery)

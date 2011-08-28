@@ -26,7 +26,7 @@ function locking_mechanism () {
             $("#content-main").prepend(notice)
         } else {
             $(":input").removeAttr("disabled")
-            ftb.disable_all_dependent_fields();
+            ftb_dep_fields.disable_all_dependent_fields();
             $.get(base_url + "/lock/") 
             $(window).unload(function(){
                 // We have to assure that our unlock request actually gets

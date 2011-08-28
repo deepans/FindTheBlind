@@ -16,13 +16,13 @@ class PatientDetails(ConcurrentlyModifiable):
     age = models.IntegerField('Age', max_length=2)
     gender = models.CharField('Gender', max_length=1, choices=GENDER_CHOICES)
     fathers_name = models.CharField("Father's name", max_length=250)
-    fathers_phone_number = models.BigIntegerField("Father's phone number'", max_length=12)
+    fathers_phone_number = models.CharField("Father's phone number'", max_length=12)
     mothers_name = models.CharField("Mother's name'", max_length=250)
-    mothers_phone_number = models.BigIntegerField("Mother's phone number'", max_length=12)
+    mothers_phone_number = models.CharField("Mother's phone number'", max_length=12)
     guardians_name = models.CharField("Guardian's name'", max_length=250)
-    guardians_phone_number = models.BigIntegerField("Guardian's phone number'", max_length=12)
+    guardians_phone_number = models.CharField("Guardian's phone number'", max_length=12)
     health_workers_name = models.CharField("Health worker's name'", max_length=250)
-    health_workers_phone_number = models.BigIntegerField("Health worker's phone number'", max_length=12)
+    health_workers_phone_number = models.CharField("Health worker's phone number'", max_length=12)
     visual_loss_age = models.IntegerField('Age at onset of visual loss', max_length=2, choices=VISUAL_LOSS_AGE_CHOICES)
     patient = models.OneToOneField(Patient, related_name='patientdetails')
 
@@ -31,7 +31,7 @@ class Address(ConcurrentlyModifiable):
     patient = models.OneToOneField(Patient, related_name='address')
     
 class FamilyHistory(ConcurrentlyModifiable):
-    has_family_history = models.NullBooleanField('Is there a famliy history for same reason')
+    has_family_history = models.NullBooleanField('Is there family history for same reason')
     affected_relation = models.CharField('Who is affected?', max_length=250, null=True, blank=True)
     consanguinity = models.NullBooleanField('Is there history of consanguinity')
     patient = models.OneToOneField(Patient, related_name='familyhistory')

@@ -13,7 +13,6 @@ class EnhancedModelForm(ModelForm):
                     widget_attrs.update({'class' : '{0} depends_on-{1}-with_value-{2}'.format(existing_class,
                                                                                              field_name,
                                                                                              dependent_value)})
-
 class FamilyHistoryForm(EnhancedModelForm):
     field_dependency = {'has_family_history': (('affected_relation', 'Yes'), ('consanguinity', 'Yes'))}
     

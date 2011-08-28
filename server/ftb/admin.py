@@ -55,8 +55,11 @@ class PatientAdmin(TabbedModelAdmin, LockableAdmin):
         js = (ADMIN_MEDIA_PREFIX + 'js/jquery.min.js',
               ADMIN_MEDIA_PREFIX + 'js/jquery.init.js',
               ADMIN_MEDIA_PREFIX + 'js/inlines.min.js',
+              'ftb/js/jquery-ui-min.js',
+              'ftb/js/admin.js',
               'ftb/js/fielddeps.js',)
         
+        css = {'all': ('ftb/css/jquery-ui.css',)}
 admin.site.register(Patient, PatientAdmin)
 
 
