@@ -38,7 +38,7 @@ class PatientAdmin(TabbedModelAdmin, LockableAdmin):
 
     list_display = ('name', 'home_town', 'lock')
     search_fields = ('name', 'address__town')
-    list_filter = ('address__town', 'patientdetails__sex')
+    list_filter = ('address__town', 'patientdetails__gender')
     
     fieldsets = [
         (None, {'fields': ['name']}),

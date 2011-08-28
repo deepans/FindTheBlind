@@ -1,8 +1,14 @@
 from django.db.models.loading import get_model
 from django.db.models.fields.related import OneToOneField, ForeignKey
+from collections import Iterable
+import simplejson
 
-def persist(json_string):
-    pass
+def persist(json_string, strategy):
+    json = simplejson.loads(json_string)
+    if isinstance(json, Iterable):
+        return [strategy().persist(item) for item in json]
+    else:
+        return strategy().persist(json)
 
 class ReplaceLatestMergeStrategy(object):
     def _handle_field(self, db_object, field, value):
@@ -39,7 +45,7 @@ class ReplaceLatestMergeStrategy(object):
                 else:
                     if parent and type(parent) is field.rel.to:
                         setattr(db_object, field.name, parent)
-                    else:    
+                    else:
                         db_object = self._handle_relation(db_object, field, properties[field.name])
 
         db_object.save()
@@ -54,6 +60,9 @@ class ReplaceLatestMergeStrategy(object):
         return db_object
 
     def persist(self, properties, parent=None):
+        if not properties:
+            return None
+
         model_name = properties.pop('model')
         model_cls = DbObjectLocator.get_class_from_name(model_name)
         db_object = DbObjectLocator.identify_by_surragate_key(model_name, properties.pop('pk')) if properties.has_key('pk') else None
